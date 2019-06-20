@@ -1,0 +1,43 @@
+version: "3"
+services:
+ mysql:
+  container_name: 'mysql'
+  image: mysql:5.7
+  restart: always
+  ports:
+   - 3307:3306
+  environment:
+   MYSQL_ROOT_PASSWORD: toor12
+   MYSQL_DATABASE: laravel
+   MYSQL_USER: laravel
+   MYSQL_PASSWORD: laravel
+  networks:
+   - microservices
+  volumes:
+   - "./data:/var/lib/mysql"
+ phpmyadmin:
+  container_name: 'phpmyadmin'
+  image: phpmyadmin/phpmyadmin
+  networks: 
+   - microservices
+  environment:
+   PMA_HOST: mysql
+   PMA_PORT: 3306
+  ports:
+   - '8081:80'
+  volumes:
+   - /sessions
+ app:
+  container_name: 'laravel_app'
+  image: webdevops/php-apache-dev:alpine
+  ports:
+   - 81:80
+  environment:
+    PHP_DISPLAY_ERRORS: 1
+  volumes:
+   - "/srv/http/laravel_teste:/app"
+  #  - "/etc/php/php.ini:/etc/php7/php.ini"
+  networks:
+   - microservices
+networks: 
+ microservices:
