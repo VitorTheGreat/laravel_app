@@ -11,6 +11,13 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+//Simple Views
+Route::view('/', 'welcome');
+Route::view('contact', 'contact');
+
+//Passing data to views - syntax: CONTROLLER@FUNCTION
+Route::get('customers', 'CustomersController@list');
