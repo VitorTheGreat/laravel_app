@@ -36,6 +36,7 @@ services:
     PHP_DISPLAY_ERRORS: 1
   volumes:
    - "/srv/http/laravel_teste:/app"
+   - "./php_custom.ini:/etc/php7/php.ini"
   #  - "/etc/php/php.ini:/etc/php7/php.ini"
   networks:
    - microservices
