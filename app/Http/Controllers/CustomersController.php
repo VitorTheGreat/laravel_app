@@ -13,11 +13,17 @@ class CustomersController extends Controller
 
         // $customers = Customer::all(); //Here we have a list of 'customers'
 
-        $activeCustomers = Customer::where('active', 1)->get(); //Where active column is equal to 1
-        $inactiveCustomers = Customer::where('active', 0)->get(); //Where active column is equal to 0
+        // $activeCustomers = Customer::where('active', 1)->get(); //Where active column is equal to 1
+        // $inactiveCustomers = Customer::where('active', 0)->get(); //Where active column is equal to 0
+        // or we do this way
+
+        // Scope Method using the model
+        $activeCustomers = Customer::active()->get();
+        $inactiveCustomers = Customer::inactive()->get();
 
         // dd($customers); //for testing
 
+        //Passing data to the views
         // return view('internals.customers', [
         //     //Array name passing to the view
         //     'activeCustomers' => $activeCustomers,
@@ -40,11 +46,15 @@ class CustomersController extends Controller
             'active' => 'required'
         ]); //Here laravel is validating for us if the request really has a data(if the user passed some information to the input)
 
-        $customer = new Customer();
-        $customer->name = request('name');
-        $customer->email = request('email');
-        $customer->active = request('active');
-        $customer->save();
+        // dd($data);
+
+        Customer::create($data); //doing this we need to go to model and create protected fields to 'mass assignment' data
+        //::create($var) is the same as we do the code above
+        // $customer = new Customer();
+        // $customer->name = request('name');
+        // $customer->email = request('email');
+        // $customer->active = request('active');
+        // $customer->save();
 
         return back(); //returning to the page we were
     }
