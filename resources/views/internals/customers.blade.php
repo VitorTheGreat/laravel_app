@@ -1,5 +1,13 @@
 @extends('layout')
 
+@section('title', 'Customers List')<!-- adding a title -->
+{{--
+    or
+@section('title')
+    Customers List
+@endsection
+--}}
+
 @section('content')
     <h1>Customers</h1>
 
