@@ -25,11 +25,13 @@ class CustomersController extends Controller
         // dd(request('name')); //for testing
 
         $data = request()->validate([
-            'name' => 'required|min:3' //|min:3 = minimum of the 3 characters - see https://laravel.com/docs/master/validation#available-validation-rules for more
+            'name' => 'required|min:3', //|min:3 = minimum of the 3 characters - see https://laravel.com/docs/master/validation#available-validation-rules for more
+            'email' => 'required|email'
         ]); //Here laravel is validating for us if the request really has a data(if the user passed some information to the input)
 
         $customer = new Customer();
         $customer->name = request('name');
+        $customer->email = request('email');
         $customer->save();
 
         return back(); //returning to the page we were

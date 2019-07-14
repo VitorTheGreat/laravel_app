@@ -16,7 +16,7 @@ class CreateCustomersTable extends Migration
         Schema::create('customers', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->string('email');
+            $table->string('email'); //php artisan migrate:rollback - we rollback one step before adding this field than we run php artisan migrate again. 
             $table->timestamps();
         });
     }
