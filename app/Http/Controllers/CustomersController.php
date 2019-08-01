@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customer;
+use App\Models\Company;
 use Illuminate\Http\Request;
 
 class CustomersController extends Controller
@@ -20,7 +21,7 @@ class CustomersController extends Controller
         // Scope Method using the model
         $activeCustomers = Customer::active()->get();
         $inactiveCustomers = Customer::inactive()->get();
-
+        $companies = Company::all();
         // dd($customers); //for testing
 
         //Passing data to the views
@@ -33,7 +34,7 @@ class CustomersController extends Controller
 
         // or
 
-        return view('internals.customers', compact('activeCustomers', 'inactiveCustomers')); //Simple and cleaner way of passing 2 or more variables
+        return view('internals.customers', compact('activeCustomers', 'inactiveCustomers', 'companies')); //Simple and cleaner way of passing 2 or more variables
     }
 
     public function create()
@@ -43,7 +44,8 @@ class CustomersController extends Controller
         $data = request()->validate([
             'name' => 'required|min:3', //|min:3 = minimum of the 3 characters - see https://laravel.com/docs/master/validation#available-validation-rules for more
             'email' => 'required|email',
-            'active' => 'required'
+            'active' => 'required',
+            'company_id' => 'required'
         ]); //Here laravel is validating for us if the request really has a data(if the user passed some information to the input)
 
         // dd($data);

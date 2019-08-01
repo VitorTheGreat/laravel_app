@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Faker\Provider\ka_GE\Company;
 
 class Customer extends Model
 {
@@ -10,7 +11,7 @@ class Customer extends Model
     //so we are able to specifies every field that we will allow mass assignment on
     // protected $fillable = ['name', 'email', 'active'];
 
-    //is the opposite of fillabe
+    //is the opposite of fillable
     //if we pass a field to it, we are saying that the field passed is NOT allowed mass assignment
     //if we leave it empty we are saying that every field is allowed. (nothing is guarded)
     protected $guarded = [];
@@ -24,5 +25,11 @@ class Customer extends Model
     public function scopeInactive($query)
     {
         return $query->where('active', 0);
+    }
+
+    public function company()
+    {
+        //Here we associate a company to the customers
+        return $this->belongsTo(Company::class);
     }
 }

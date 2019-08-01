@@ -17,7 +17,7 @@
                 <ul>
                     <!-- Blade syntax simplifies the '<?php ?>' -->
                     @foreach ($activeCustomers as $actCustomer)
-                        <li>{{ $actCustomer->name }} - {{ $actCustomer->email }}</li>
+                        <li>{{ $actCustomer->name }} - {{ $actCustomer->company->name }}</li>
                     @endforeach
                 </ul>
         </div>
@@ -26,7 +26,7 @@
                 <ul>
                     <!-- Blade syntax simplifies the '<?php ?>' -->
                     @foreach ($inactiveCustomers as $inactCustomer)
-                        <li>{{ $inactCustomer->name }} - {{ $inactCustomer->email }}</li>
+                        <li>{{ $inactCustomer->name }} - {{ $inactCustomer->company->name }}</li>
                     @endforeach
                 </ul>
         </div>
@@ -42,6 +42,14 @@
                 <option value="1">Active</option>
                 <option value="0">Inactive</option>
         </select>
+
+        <select name="company_id" id="company_id,">
+            <option value="" disabled selected>Select Customer's Company</option>
+            @foreach ($companies as $company)
+                <option value="{{ $company->id }}">{{ $company->name }}</option>
+            @endforeach
+        </select>
+
         <button type="submit">Add</button>
         <!-- For security laravel only allows to pass data throug our form if we pass '@csrf', so laravel knows that you are really you passing data and not someone else -->
         @csrf
