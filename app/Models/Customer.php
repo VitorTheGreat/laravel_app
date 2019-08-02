@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Faker\Provider\ka_GE\Company;
 
 class Customer extends Model
 {

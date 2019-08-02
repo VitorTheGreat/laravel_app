@@ -17,7 +17,7 @@
                 <ul>
                     <!-- Blade syntax simplifies the '<?php ?>' -->
                     @foreach ($activeCustomers as $actCustomer)
-                        <li>{{ $actCustomer->name }} - {{ $actCustomer->company->name }}</li>
+                        <li>{{ $actCustomer->name }} - {{ $actCustomer->company->name }}</li> <!-- Here we are calling the company as a property -->
                     @endforeach
                 </ul>
         </div>
@@ -26,9 +26,24 @@
                 <ul>
                     <!-- Blade syntax simplifies the '<?php ?>' -->
                     @foreach ($inactiveCustomers as $inactCustomer)
-                        <li>{{ $inactCustomer->name }} - {{ $inactCustomer->company->name }}</li>
+                        <li>{{ $inactCustomer->name }} - {{ $inactCustomer->company->name }}</li> <!-- Here we are calling the company as a property -->
                     @endforeach
                 </ul>
+        </div>
+    </div>
+<hr>
+    <div class="row">
+        <div class="col-12">
+            <h2>Companies and their Customers</h2>
+            @foreach ($companies as $company)
+                <h3> {{$company->name}} </h3>
+
+<ul>
+        @foreach ($company->customers as $ccustomers)
+<li> {{ $ccustomers->name }} </li>
+        @endforeach
+</ul>
+            @endforeach
         </div>
     </div>
 
@@ -43,7 +58,7 @@
                 <option value="0">Inactive</option>
         </select>
 
-        <select name="company_id" id="company_id,">
+        <select name="company_id" id="company_id">
             <option value="" disabled selected>Select Customer's Company</option>
             @foreach ($companies as $company)
                 <option value="{{ $company->id }}">{{ $company->name }}</option>
@@ -58,5 +73,6 @@
     {{ $errors->first('name') }} <!-- Get the first error after returning from controller -->
     {{ $errors->first('email') }} <!-- Get the first error after returning from controller -->
     {{ $errors->first('active') }} <!-- Get the first error after returning from controller -->
+    {{ $errors->first('company_id') }} <!-- Get the first error after returning from controller -->
 
 @endsection
