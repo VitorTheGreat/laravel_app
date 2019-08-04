@@ -16,7 +16,7 @@
 // });
 
 //Simple Views
-Route::view('/', 'welcome');
+Route::view('/', 'home');
 Route::view('contact', 'contact');
 
 //Passing data to views (listing) - syntax: CONTROLLER@FUNCTION
