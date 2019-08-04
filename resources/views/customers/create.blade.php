@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('title', 'Customers List')<!-- adding a title -->
+@section('title', 'Add New Customers')<!-- adding a title -->
 {{--
     or
 @section('title')
@@ -9,47 +9,10 @@
 --}}
 
 @section('content')
-    <h1>Customers</h1>
 
-    <div class="row">
-        <div class="col-6">
-            <p>Active Customers</p>
-                <ul>
-                    <!-- Blade syntax simplifies the '<?php ?>' -->
-                    @foreach ($activeCustomers as $actCustomer)
-                        <li>{{ $actCustomer->name }} - {{ $actCustomer->company->name }}</li> <!-- Here we are calling the company as a property -->
-                    @endforeach
-                </ul>
-        </div>
-        <div class="col-6">
-            <p>Inactive Customers</p>
-                <ul>
-                    <!-- Blade syntax simplifies the '<?php ?>' -->
-                    @foreach ($inactiveCustomers as $inactCustomer)
-                        <li>{{ $inactCustomer->name }} - {{ $inactCustomer->company->name }}</li> <!-- Here we are calling the company as a property -->
-                    @endforeach
-                </ul>
-        </div>
-    </div>
-<hr>
-    <div class="row">
-        <div class="col-12">
-            <h2>Companies and their Customers</h2>
-            @foreach ($companies as $company)
-                <h3> {{$company->name}} </h3>
+    <h1>Add a New Customer</h1>
 
-<ul>
-        @foreach ($company->customers as $ccustomers)
-<li> {{ $ccustomers->name }} </li>
-        @endforeach
-</ul>
-            @endforeach
-        </div>
-    </div>
-
-    <h1>Add Customer</h1>
-
-    <form action="customers" method="POST">
+    <form action="/public/customers" method="POST">
         <input type="text" placeholder="Customer Name" name="name" id="name" value="{{ old('name') }}">
         <input type="text" placeholder="Customer E-mail" name="email" id="email" value="{{ old('email') }}">
         <select name="active" id="active">

@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class CustomersController extends Controller
 {
     // List the table
-    public function list()
+    public function index()
     {
 
         // $customers = Customer::all(); //Here we have a list of 'customers'
@@ -19,8 +19,7 @@ class CustomersController extends Controller
         // or we do this way
 
         // Scope Method using the model
-        $activeCustomers = Customer::active()->get();
-        $inactiveCustomers = Customer::inactive()->get();
+        $customers = Customer::all();
         $companies = Company::all();
         // dd($customers); //for testing
 
@@ -34,10 +33,17 @@ class CustomersController extends Controller
 
         // or
 
-        return view('internals.customers', compact('activeCustomers', 'inactiveCustomers', 'companies')); //Simple and cleaner way of passing 2 or more variables
+        return view('customers.index', compact('customers', 'companies')); //Simple and cleaner way of passing 2 or more variables
     }
 
     public function create()
+    {
+        $companies = Company::all();
+
+        return view('customers.create', compact('companies'));
+    }
+
+    public function store()
     {
         // dd(request('name')); //for testing
 
@@ -58,6 +64,6 @@ class CustomersController extends Controller
         // $customer->active = request('active');
         // $customer->save();
 
-        return back(); //returning to the page we were
+        return redirect('customers'); //returning to the page we were
     }
 }

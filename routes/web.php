@@ -20,6 +20,7 @@ Route::view('/', 'home');
 Route::view('contact', 'contact');
 
 //Passing data to views (listing) - syntax: CONTROLLER@FUNCTION
-Route::get('customers', 'CustomersController@list');
+Route::get('customers', 'CustomersController@index');
+Route::get('customers/create', 'CustomersController@create');
 //To insert data to date base we use ROUTE::POST
-Route::post('customers', 'CustomersController@create');
+Route::post('customers', 'CustomersController@store');
