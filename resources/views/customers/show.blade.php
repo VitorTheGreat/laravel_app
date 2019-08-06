@@ -11,7 +11,7 @@
 @section('content')
 
 <h1>Details for {{$customer->name}}</h1>
-
+<a href="/public/customers/{{$customer->id}}/edit">Edit</a>
 <div class="row">
     <div class="col-12">
         <p> <b>Name:</b> {{$customer->name}}</p>

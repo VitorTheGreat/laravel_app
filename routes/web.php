@@ -25,5 +25,8 @@ Route::get('customers', 'CustomersController@index');
 Route::get('customers/create', 'CustomersController@create');
 //To insert data to date base we use ROUTE::POST
 Route::post('customers', 'CustomersController@store');
-//Show method
+//Show method by customer ID
 Route::get('customers/{customer}', 'CustomersController@show');
+//Restful method of updating
+Route::get('customers/{customer}/edit', 'CustomersController@edit'); //view for editing
+Route::patch('customers/{customer}', 'CustomersController@update'); //saving data comming from view edit
