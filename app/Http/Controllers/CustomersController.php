@@ -66,4 +66,23 @@ class CustomersController extends Controller
 
         return redirect('customers'); //returning to the page we were
     }
+
+    //? We have this way to do in LARAVEL, passing the variable and using the model inside it
+    // public function show($customer)
+    // {
+
+    //     // $customer = Customer::find($customer); //It does not bring an error page like expected so we do:
+    //     $customer = Customer::where('id', $customer)->firstOrFail(); //This method bring us an error page if the 'ID' passed is null
+
+    //     // dd($customer);
+
+    //     return view('customers.show', compact('customer'));
+    // }
+
+    //? But we also have this way to do, it is exactly the same thing as the above, but LARAVEL made it simple using 'Route Model Binding'
+    //! the variable here has to match, be named, exaclty the same in the web.php(Routes)
+    public function show(Customer $customer)
+    {
+        return view('customers.show', compact('customer'));
+    }
 }
