@@ -39,24 +39,25 @@ class CustomersController extends Controller
     public function create()
     {
         $companies = Company::all();
-
-        return view('customers.create', compact('companies'));
+        $customer = new Customer(); //Creating an empty 'customer' laravel won't return error whe comparing old() ?? $customer (show page)
+        return view('customers.create', compact('companies', 'customer'));
     }
 
     public function store()
     {
         // dd(request('name')); //for testing
 
-        $data = request()->validate([
-            'name' => 'required|min:3', //|min:3 = minimum of the 3 characters - see https://laravel.com/docs/master/validation#available-validation-rules for more
-            'email' => 'required|email',
-            'active' => 'required',
-            'company_id' => 'required'
-        ]); //Here laravel is validating for us if the request really has a data(if the user passed some information to the input)
+        //!REFACTORED - see the validateRequest() private function
+        // $data = request()->validate([
+        //     'name' => 'required|min:3', //|min:3 = minimum of the 3 characters - see https://laravel.com/docs/master/validation#available-validation-rules for more
+        //     'email' => 'required|email',
+        //     'active' => 'required',
+        //     'company_id' => 'required'
+        // ]); //Here laravel is validating for us if the request really has a data(if the user passed some information to the input)
 
         // dd($data);
 
-        Customer::create($data); //doing this we need to go to model and create protected fields to 'mass assignment' data
+        Customer::create($this->validateRequest()); //doing this we need to go to model and create protected fields to 'mass assignment' data
         //::create($var) is the same as we do the code above
         // $customer = new Customer();
         // $customer->name = request('name');
@@ -95,14 +96,25 @@ class CustomersController extends Controller
 
     public function update(Customer $customer)
     {
-        $data = request()->validate([
-            'name' => 'required|min:3',
-            'email' => 'required|email'
-        ]);
-
-        $customer->update($data);
+        $customer->update($this->validateRequest());
 
         return redirect('customers/' . $customer->id);
+    }
 
+    public function destroy(Customer $customer)
+    {
+        $customer->delete();
+
+        return redirect('customers');
+    }
+
+    private function validateRequest()
+    {
+        return request()->validate([
+            'name' => 'required|min:3',
+            'email' => 'required|email',
+            'active' => 'required',
+            'company_id' => 'required'
+        ]);
     }
 }
