@@ -17,7 +17,11 @@
 
 //Simple Views
 Route::view('/', 'home');
-Route::view('contact', 'contact');
+// Route::view('contact', 'contact');
+
+// Route::resource('contact', 'ContactFormController');
+Route::get('contact', 'ContactFormController@create');
+Route::post('contact', 'ContactFormController@store');
 
 //RESTFUL CONTROLLERS - SEE LARAVEL DOCMENTATION
 //Passing data to views (listing) - syntax: CONTROLLER@FUNCTION
