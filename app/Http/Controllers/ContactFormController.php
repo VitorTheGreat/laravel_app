@@ -31,7 +31,7 @@ class ContactFormController extends Controller
         //* SEND AN EMAIL, to SOMEONE using the ContactFormMail class, see: /Mail/ContactFormMail, that is where is calling the template
         Mail::to('test@test.com.br')->send(new ContactFormMail($data));
 
-        return redirect('/public/contact');
+        return redirect('contact');
     }
 
     public function show($id)

@@ -7,8 +7,8 @@ The body of your message.
 
 # Thanks for you message
 <strong>Name</strong> {{$data['name']}}
-<strong>E-mail</strong> {{$data['email']}}
-<strong>Message</strong>
+<strong>E-mail</strong> {{$data['email']}}<br />
+<strong>Message</strong><br />
 {{$data['message']}}
 
 @component('mail::button', ['url' => ''])
