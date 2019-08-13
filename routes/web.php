@@ -17,10 +17,25 @@
 
 //Simple Views
 Route::view('/', 'home');
-Route::view('contact', 'contact');
+// Route::view('contact', 'contact');
 
+// Route::resource('contact', 'ContactFormController');
+Route::get('contact', 'ContactFormController@create');
+Route::post('contact', 'ContactFormController@store');
+
+//RESTFUL CONTROLLERS - SEE LARAVEL DOCMENTATION
 //Passing data to views (listing) - syntax: CONTROLLER@FUNCTION
-Route::get('customers', 'CustomersController@index');
-Route::get('customers/create', 'CustomersController@create');
-//To insert data to date base we use ROUTE::POST
-Route::post('customers', 'CustomersController@store');
+// Route::get('customers', 'CustomersController@index');
+// Route::get('customers/create', 'CustomersController@create');
+// //To insert data to date base we use ROUTE::POST
+// Route::post('customers', 'CustomersController@store');
+// //Show method by customer ID
+// Route::get('customers/{customer}', 'CustomersController@show');
+// //Restful method of updating
+// Route::get('customers/{customer}/edit', 'CustomersController@edit'); //view for editing
+// Route::patch('customers/{customer}', 'CustomersController@update'); //saving data comming from view edit
+// Route::delete('customers/{customer}', 'CustomersController@destroy'); //deleting data comming from view
+
+//To use this way we do have to follow the Laravel convention (methods of CRUD, restful controllers)
+//In order to not use all the routes above, Laravel do it for us
+Route::resource('customers', 'CustomersController');
