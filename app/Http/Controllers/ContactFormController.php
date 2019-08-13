@@ -37,6 +37,19 @@ class ContactFormController extends Controller
         //with() - returns something to the redirect, in this case a message ONLY ONCE!
         return redirect('contact')->with('message', 'Thanks for your message');
 
+
+        // Trying to flash error messages
+        // if(Mail::to('test@test.com.br')->send(new ContactFormMail($data))) {
+        //     session()->flash('message.type', 'green');
+        //     session()->flash('message.text', 'Thanks for your message');
+        //     return redirect('contact');
+        // }
+        // else {
+        //     session()->flash('message.type', 'danger');
+        //     session()->flash('message.text', 'Something went wrong');
+        //     return redirect('contact');
+        // }
+
     }
 
     public function show($id)
