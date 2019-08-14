@@ -15,8 +15,8 @@
 
     {{-- If the sessiont has the 'message' show for us this alert --}}
     @if (session()->has('message'))
-        <div class="alert alert-{{'message.type'}}" role="alert">
-           {{session()->get('message.text')}} {{-- we are 'diving' into our session and telling laravel(php) to display it for us --}}
+        <div class="alert alert-{{'message'}}" role="alert">
+           {{session()->get('message')}} {{-- we are 'diving' into our session and telling laravel(php) to display it for us --}}
         </div>
     @endif
 
