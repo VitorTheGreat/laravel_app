@@ -39,3 +39,7 @@ Route::post('contact', 'ContactFormController@store');
 //To use this way we do have to follow the Laravel convention (methods of CRUD, restful controllers)
 //In order to not use all the routes above, Laravel do it for us
 Route::resource('customers', 'CustomersController');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
