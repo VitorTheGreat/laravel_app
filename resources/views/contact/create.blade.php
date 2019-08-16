@@ -13,7 +13,7 @@
 
     <textarea name="message" id="message" cols="30" rows="10"> {{ old('message') }} </textarea>
 
-    <button type="submit">Send Message</button>
+    <button type="submit" class="btn btn-primary">Send Message</button>
     <!-- For security laravel only allows to pass data throug our form if we pass '@csrf', so laravel knows that you are really you passing data and not someone else -->
     @csrf
 </form>

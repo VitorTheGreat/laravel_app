@@ -39,6 +39,9 @@ Route::post('contact', 'ContactFormController@store');
 //To use this way we do have to follow the Laravel convention (methods of CRUD, restful controllers)
 //In order to not use all the routes above, Laravel do it for us
 Route::resource('customers', 'CustomersController');
+//locking the page if the user is not logged in, calling the middleware('auth')
+// Or we can pass it in the controller
+// Route::resource('customers', 'CustomersController')->middleware('auth');
 
 Auth::routes();
 
