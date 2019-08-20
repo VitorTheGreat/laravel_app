@@ -6,8 +6,8 @@
 
 <h1>Contact Us</h1>
 
-
-<form action="" method="post">
+{{-- naming the route like this, using route helper, we do not need to change every single route if we change them in web.php(see web.php, we NAMED the routes) --}}
+<form action="{{route('contact.store')}}" method="post">
     <input type="text" placeholder="Customer Name" name="name" id="name" value="{{ old('name') }}">
     <input type="text" placeholder="Customer E-mail" name="email" id="email" value="{{ old('email') }}">
 

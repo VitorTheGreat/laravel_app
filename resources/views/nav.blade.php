@@ -7,9 +7,12 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
+
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav mr-auto">
+                {{-- with action()  method we can call directly call the function of the controller, so we do not need to name the route --}}
+                {{-- <li class="nav-item"><a class="nav-link" href="{{action('HomeController@index')}}">Dashboard</a></li> --}}
                 <li class="nav-item"><a class="nav-link" href="/public">Home</a></li>
                 <li class="nav-item"><a class="nav-link" href="/public/customers">Customer List</a></li>
                 <li class="nav-item"><a class="nav-link" href="/public/customers/create">Add New Customer</a></li>
