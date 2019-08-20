@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.app')
 
 @section('title', 'Add New Customers')<!-- adding a title -->
 {{--
@@ -14,7 +14,7 @@
 
     <form action="/public/customers" method="POST">
         @include('customers.form')
-        <button type="submit">Add</button>
+        <button class="btn btn-primary" type="submit">Add</button>
     </form>
 
     {{ $errors->first('name') }} <!-- Get the first error after returning from controller -->

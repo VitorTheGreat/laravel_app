@@ -20,9 +20,12 @@ Route::view('/', 'home');
 // Route::view('contact', 'contact');
 
 // Route::resource('contact', 'ContactFormController');
-Route::get('contact', 'ContactFormController@create');
-Route::post('contact', 'ContactFormController@store');
+// Route::get('contact', 'ContactFormController@create');
+// Route::post('contact', 'ContactFormController@store');
 
+//naming the routes
+Route::get('contact', 'ContactFormController@create')->name('contact.create');
+Route::post('contact', 'ContactFormController@store')->name('contact.store');
 //RESTFUL CONTROLLERS - SEE LARAVEL DOCMENTATION
 //Passing data to views (listing) - syntax: CONTROLLER@FUNCTION
 // Route::get('customers', 'CustomersController@index');
@@ -39,3 +42,13 @@ Route::post('contact', 'ContactFormController@store');
 //To use this way we do have to follow the Laravel convention (methods of CRUD, restful controllers)
 //In order to not use all the routes above, Laravel do it for us
 Route::resource('customers', 'CustomersController');
+//locking the page if the user is not logged in, calling the middleware('auth')
+// Or we can pass it in the controller
+// Route::resource('customers', 'CustomersController')->middleware('auth');
+
+//when we use resource routes, we can not name it, but lavarel is magic so when we use resouce we already have the routes named
+//to check it run the command: php artisan route:list
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
