@@ -8,6 +8,15 @@ use Illuminate\Http\Request;
 
 class CustomersController extends Controller
 {
+    //Locking the customers pages, the user can only see it if he is logged in
+    public function __construct()
+    {
+        $this->middleware('auth');
+        //we have the only() method and except() method if we want to lock just part of my pages
+        // $this->middleware('auth')->except(['index']); //locking everything, except the index method(page)
+        // $this->middleware('auth')->only(['create']); //locking only the create method(page)
+    }
+
     // List the table
     public function index()
     {
