@@ -15,8 +15,7 @@
                     @endif
 
                     You are logged in!
-
-                {{-- Button submit component passing props --}}
+                    {{-- Button submit component passing props --}}
                     <my-button type="submit" text="My Component Vue button"></my-button>
                 </div>
             </div>
