@@ -19,4 +19,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 //we do not need to eplicit the api/ url, laravel does it by its own
-Route::post('api/vue',  'TestingVueController@index')
+Route::post('api/vue',  'TestingVueController@index');

@@ -17,13 +17,13 @@
             ]
         },
         data: function () {
-            return: {
+            return {
                 test: null
             }
         },
         props: [
             'text',
-            'type'.
+            'type'
         ]
     }
 </script>

@@ -101,6 +101,10 @@ class CustomersController extends Controller
     {
         $companies = Company::all();
         return view('customers.edit', compact('customer', 'companies'));
+        //leo taught this way
+        // return view('customers.edit', [
+        //     'companies' => $companies
+        // ]);
     }
 
     public function update(Customer $customer)

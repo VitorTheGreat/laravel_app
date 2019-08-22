@@ -11,8 +11,8 @@
 @section('content')
 
 <h1>Details for {{$customer->name}}</h1>
-<a href="/public/customers/{{$customer->id}}/edit">Edit</a>
-<form action="/public/customers/{{$customer->id}}" method="post">
+<a href="/customers/{{$customer->id}}/edit">Edit</a>
+<form action="/customers/{{$customer->id}}" method="post">
 @method('DELETE')
 @csrf
 
