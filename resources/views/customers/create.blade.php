@@ -12,7 +12,7 @@
 
     <h1>Add a New Customer</h1>
 
-    <form action="/public/customers" method="POST">
+    <form action="/customers" method="POST">
         @include('customers.form')
         <button class="btn btn-primary" type="submit">Add</button>
     </form>

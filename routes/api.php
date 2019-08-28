@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\TestingVueController;
 use Illuminate\Http\Request;
 
 /*
@@ -16,3 +17,6 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+//we do not need to eplicit the api/ url, laravel does it by its own
+Route::post('vue',  'TestingVueController@index');

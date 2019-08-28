@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\NewCustomerHasRegisteredEvent;
+use App\Mail\WelcomeNewUserMail;
 use App\Models\Customer;
 use App\Models\Company;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class CustomersController extends Controller
 {
@@ -66,13 +69,17 @@ class CustomersController extends Controller
 
         // dd($data);
 
-        Customer::create($this->validateRequest()); //doing this we need to go to model and create protected fields to 'mass assignment' data
+        $customer = Customer::create($this->validateRequest()); //doing this we need to go to model and create protected fields to 'mass assignment' data
         //::create($var) is the same as we do the code above
         // $customer = new Customer();
         // $customer->name = request('name');
         // $customer->email = request('email');
         // $customer->active = request('active');
         // $customer->save();
+
+        //Event Listeners
+        //We have to create an event and a listener to each the steps: see listeners
+        event(new NewCustomerHasRegisteredEvent($customer));
 
         return redirect('customers'); //returning to the page we were
     }
@@ -101,6 +108,10 @@ class CustomersController extends Controller
     {
         $companies = Company::all();
         return view('customers.edit', compact('customer', 'companies'));
+        //leo taught this way
+        // return view('customers.edit', [
+        //     'companies' => $companies
+        // ]);
     }
 
     public function update(Customer $customer)
